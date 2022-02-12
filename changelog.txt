@@ -1,0 +1,20 @@
+I'm going to check the price every 5 seconds, and use price levels to decide when I execute market orders. The main reasoning for the short intervals is 
+both long intervals and price levels are used to ignore rapid short-term movement and to confirm a movement. I also use market orders because (1) specifying
+a certain price to buy/sell can potentially not fill successfully and (2) if i use stop prices, I will be highly subject to fluctuations around a certain
+price level. Since I check every 5 seconds, I will not have to worry about, for example, not buying the same value of an asset as I sold it. Again, fluctations
+may kill me, but I think the general move upwards will make up for the loss enough for a profit. 
+
+So although the gap levels are supposed to confirm movements, checking every 5 seconds still kills me when it 
+comes to fluctuations. I can solve this by two ways: (1) To increase the waiting time to more than 5 seconds
+or (2) to sell it at a price a little less than the sell price or to buy it at a price a little more than the buy price.
+I think that both can be implemented, but let's try only (1) first. 
+
+Another problem is that I'm getting rounded out into oblivion. So when I sell, I should instead sell all the currency. 
+
+[Jan 17, 2021]
+Now, I've increased the price check interval to 3 minutes so that small fluctations don't kill me. I've also incrased the gap to lower the chances of being 
+caught in a sideways market. The price levels no longer change to the market order price and remain the same. 
+
+Another less aggressive and safer approach is to not "chase" the falling price. This program would only update the selling price level and would not touch the 
+buying price level. This would reduce the chances of being caught in fluctuations and reduce loss from fees and market order spreads. However, it wouldn't be 
+good at catching discounts. 
