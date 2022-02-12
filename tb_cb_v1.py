@@ -4,6 +4,7 @@ levels when prices drop.
 """
 import cbpro, time, pprint, signal, decimal, urllib.request, socket, datetime
 
+#change the following two lines to wherever config_v1.txt and data_v1.txt is located
 config = open("/home/tayzashwe/Documents/Stocks_and_Crypto/Trading_bot/Coinbase/tb_cb_v1/config_v1.txt", "r").read().splitlines()
 data = open("/home/tayzashwe/Documents/Stocks_and_Crypto/Trading_bot/Coinbase/tb_cb_v1/data_v1.txt", "r").read().splitlines()
 
