@@ -1,6 +1,12 @@
-[PRODUCT ID (EG. BTC-USD):]  
+[PRODUCT ID (EG. "BTC-USD"):]  
 BTC-USD
 [GAP:]
 300
 [AMOUNT OF MONEY TO USE:]
 10000
+[DATE-FROM (EG. "31/12/2015"):]
+01/01/2016
+[DATE-TO (EG. "31/12/2015"):] //must be within 2000 days/hours/minutes from start DATE
+05/01/2016
+[TIME RANGE (EG. "DAY" "HOUR" "MINUTE):]
+DAY
