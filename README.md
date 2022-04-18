@@ -3,7 +3,7 @@
 This is the official repository for my cryptocurrency trading bot. 
 
 I have created two versions of this trading bot: 
-1) Trading bot that uses your real money to trade cryptocurrencies in Coinbase (__tb_cb_v1.py__)
+1) Trading bot that uses your real money to trade cryptocurrencies in Coinbase Pro(__tb_cb_v1.py__)
 2) Trading bot that uses paper money or fake money to simulate the actual trading bot (__trading_bot_paper_money.py__)
 
 ### Table of Contents ###
@@ -54,6 +54,6 @@ A simple rule to remember is that the trading bot has outperformed the normal st
 
 * Python (for the both versions)
 * Matplotlib (for the second version)
-* Coinbase API (for the first version)
+* Coinbase Pro API (for the first version)
 * Cryptocompare API (for the second version)
 
