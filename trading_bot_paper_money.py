@@ -95,6 +95,8 @@ def main_program(price_list):
             bought = True
         else:
             if bought:
+                current_asset_value = price*current_asset_amt
+                total_asset_value = current_currency_amt+current_asset_value
                 if price <= sell_price:
                     market_order("sell", price)
                     buy_price = sell_price
@@ -103,8 +105,6 @@ def main_program(price_list):
                     sold = True
                 elif (price - sell_price) > gap:
                     sell_price = price - gap
-                    current_asset_value = price*current_asset_amt
-                    total_asset_value = current_currency_amt+current_asset_value
             elif sold:
                 if price >= buy_price:
                     market_order("buy", price)
