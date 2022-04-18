@@ -6,6 +6,18 @@ I have created two versions of this trading bot:
 1) Trading bot that uses your real money to trade cryptocurrencies in Coinbase (__tb_cb_v1.py__)
 2) Trading bot that uses paper money or fake money to simulate the actual trading bot (__trading_bot_paper_money.py__)
 
+### Table of Contents ###
+1) Why I developed this trading bot
+2) How my trading bot works
+3) Results
+4) How to use the first version of bot (uses actual money)
+5) How to use the second version of bot (uses fake money)
+6) Technologies involved 
+
+## WHY I DEVELOPED THIS TRADING BOT ##
+
+When I started off trading cryptocurrencies as a beginner, I noticed that I missed out on important price movements when I was away from the trading screen, especially while I was asleep. To combat this, I developed this trading bot to imitate my behvavior as if I were looking at the trading screen at all times. 
+
 ## HOW MY TRADING BOT WORKS ##
 
 My trading bot's algorithm is simple. It first sends a __market buy order__ and sets a __sell price__ below the price at which the cryptocurrency was bought. The __sell price__ is determined by the __gap__ which is a predetermined input by the user. If the cryptocurrency's price rises and the difference between the price and the __sell price__ is more than the __gap__, the __sell price__ will be updated to a higher price. If the cryptocurrency's price drops, the __sell price__ doesn't move. If the __sell price__ is hit, a __market sell order__ is sent and a __buy price__ is set to the former __sell price__. If cryptocurrency's price drops, the __buy price__ will maintain a difference of the __gap__ similar to how the __sell price__ changes. If the price moves up again, the __buy price__ doesn't move. If the __buy price__ is hit, a __market buy order__ is sent and the sell price is set to the __buy price__. The bot, in essence, is supposed to try to __"buy low, sell high."__
@@ -37,3 +49,11 @@ The net profit gained from using the bot and the net profit gained from the norm
 * Green dot - the buy price
 
 A simple rule to remember is that the trading bot has outperformed the normal strategy if the orange line ends at a higher price than the pink line. 
+
+## TECHNOLOGIES INVOLVED ##
+
+* Python (for the both versions)
+* Matplotlib (for the second version)
+* Coinbase API (for the first version)
+* Cryptocompare API (for the second version)
+
