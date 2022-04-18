@@ -22,7 +22,7 @@ Having said the above, after numerous trials, the trading bot seems to __outperf
 
 For the first version that uses actual money, you can enter your information in __config_v1.txt__. This only works with Coinbase. Be advised that this information is sensitive. The information includes your API key, API secret key, passphrase, product id, the gap, and the amount of money to use. 
 
-Run __tb_cb_v1.py__. Updates on orders and your total value will appear whenever a __market order__ is sent. To end the program, press __CTRL+C__. A prompt will appear asking if you want to send a __market sell order__ before exiting or not. Enter what you want to do and the program will end. 
+Run __tb_cb_v1.py__. Updates on orders and your total value will appear whenever a __market order__ is sent. To end the program, press __CTRL+C__. A prompt will appear asking if you want to send a __market sell order__ before exiting or not. Enter what you want to do and the program will end. After the program ends, the information of the session is stored in __data_v1.txt__. The program will use this data when you run the program again to continue with the same conditions as when the program last ended. Make sure to copy __data_backup.txt__'s content into __data_v1.txt__ before running the program if you want to start new. 
 
 ## HOW TO USE THE SECOND VERSION OF BOT (USES PAPER MONEY) ##
 
