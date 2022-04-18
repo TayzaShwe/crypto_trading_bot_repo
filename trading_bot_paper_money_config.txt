@@ -1,14 +1,14 @@
 [PRODUCT ID (EG. "BTC-USD"):]  
 BTC-USD
 [GAP:]
-100
+5000
 [AMOUNT OF MONEY TO USE:]
-10000
-[DATE-FROM (EG. "31,12,2015"):]
-05,04,2021
-[DATE-TO (EG. "31,12,2015"):] //must be within 2000 days/hours/minutes from start DATE
-01,11,2021
+60000
+[DATE-FROM (EG. "31/12/2015"):]
+05/04/2021
+[DATE-TO (EG. "31/12/2015"):] //must be within 2000 days/hours/minutes from start DATE
+01/11/2021
 [TIME RANGE (EG. "DAY" "HOUR" "MINUTE):]
 DAY
 [MARKET ORDER LOSS PERCENTAGE (EG. "1" "0.01"):] //when sending a market buy, for example, an asset will be bought above the current price to ensure purchase 
-0.00
+0.00005
