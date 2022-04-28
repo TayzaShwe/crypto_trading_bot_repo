@@ -1,0 +1,36 @@
+
+
+@media (min-width: 1280px) {
+
+    body{
+        height: 100%;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        grid-column-gap: 5em;
+        margin: 5em 3em 0em;
+    }
+
+    .main-title {
+        text-align: center;
+    }
+
+    .user-input {
+        align-self: center;
+        justify-self: center;
+    }
+
+    .chart-and-zoom-container {
+        justify-self: center;
+        width: 100%;
+        height: 100%
+    }
+
+    .chart-container {
+        text-align: center;
+        width: 100%;
+        height: 90%; 
+    }
+}
