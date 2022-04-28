@@ -2,9 +2,10 @@
 
 This is the official repository for my cryptocurrency trading bot. 
 
-I have created two versions of this trading bot: 
+I have created three versions of this trading bot: 
 1) Trading bot that uses your real money to trade cryptocurrencies in Coinbase Pro(__tb_cb_v1.py__)
 2) Trading bot that uses paper money or fake money to simulate the actual trading bot (__trading_bot_paper_money.py__)
+3) Web version of paper money trading bot (https://tayzashwe.github.io/crypto_trading_bot_repo/)
 
 ### Table of Contents ###
 1) Why I developed this trading bot
