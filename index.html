@@ -4,70 +4,118 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script> -->
-    <!-- <script src="../node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./trading-bot-demo-web/dist/trading-bot-demo-stylesheet.css">
     <title>Trading Bot Demo</title>
 </head>
 <body>
-    <h1 class="main-title">Trading Bot Demo</h1>
-    <div class="container">
-        <div class="user-input">
-            <label class="crypto-label" for="crypto-input">Enter cryptocurrency name:</label><br>
-            <input class="crypto-input" type="text" placeholder="eg. BTC" maxlength="10"><br>
-            <label class="crypto-input-check" for="crypto-input" style="color: red;"></label>
-            <br>
-            <label class="currency-label" for="currency-input">Enter currency name:</label><br>
-            <input class="currency-input" type="text" placeholder="eg. USD" maxlength="10"><br>
-            <label class="currency-input-check" for="currency-input" style="color: red;"></label>
-            <br>
-            <label class="gap-label" for="gap-input">Enter gap:</label><br>
-            <input class="gap-input" type="number" placeholder="eg. 1000"><br>
-            <label class="gap-input-check" for="gap-input" style="color: red;"></label>
-            <br>
-            <label class="money-label" for="money-input">Enter amount of money to :</label><br>
-            <input class="money-input" type="number" placeholder="eg. 100000"><br>
-            <label class="money-input-check" for="money-input" style="color: red;"></label>
-            <br>
-            <label class="from-date-label" for="from-date-input">Enter starting date:</label><br>
-            <input class="from-date-input" type="date"><br>
-            <label class="from-date-input-check" for="from-date-input" style="color: red;"></label>
-            <br>
-            <label class="to-date-label" for="to-date-input">Enter ending date:</label><br>
-            <input class="to-date-input" type="date"><br>
-            <label class="to-date-input-check" for="to-date-input" style="color: red;"></label>
-            <br>
-            <div class="time-range-choices">
-                <label for="time-range-choices">Choose a time range:</label><br>
-                <div class="time-range-day-wrapper">
-                    <input name="time-range-choices" class="time-range-day-button" type="radio">
-                    <label class="time-range-day-label" for="time-range-day">Day (limit: 1999 days)</label>
-                </div>
-                <div class="time-range-hour-wrapper">
-                    <input name="time-range-choices" class="time-range-hour-button" type="radio">
-                    <label class="time-range-hour-label" for="time-range-hour">Hour (limit: 83 days)</label>
-                </div>
-                <div class="time-range-minute-wrapper">
-                    <input name="time-range-choices" class="time-range-minute-button" type="radio">
-                    <label class="time-range-minute-label" for="time-range-minute">Minute (limit: 1 day)</label>
-                </div>
-                <label class="time-range-input-check" for="time-range-input" style="color: red;"></label>
+    <div class="left-sidebar">
+        <div class="description-and-input-container">
+            <div class="trading-bot-demo-description">
+                <p>
+                    Welcome to my trading bot demo! Scroll down to input values for the trading bot simulator.
+                </p>
+                <p>
+                    This trading bot simulator does not actually trade real money, and instead uses 
+                    fake money to simulate the bot over a certain time interval. 
+                </p>
+                <p>
+                    The technique used in this trading bot is maintaining a "gap" or a difference of
+                    a certain value between the current asset's price and the buy price of sell price.
+                    At the start, a market buy order will be executed and the specified
+                    amount of the asset will be bought. At the same time, a sell price that is slightly 
+                    below the current price will be set. Then, if the price of the asset moves up and the 
+                    difference between the sell price and the current price exceeds the specified gap, 
+                    the sell price is updated to a higher price. Think of it as a trailing stop loss order.
+                    If the asset's price moves down, the sell price does not move and if the asset's price
+                    reaches the sell price, a market sell order is executed. Then the same thing happens 
+                    but with a buy price. If the asset's price moves down and exceed the gap, the buy
+                    price is moved lower and if the asset's price moves up, the buy price does not change. 
+                </p>
+                <p>
+                    In theory, with the right gap value, the trading bot should almost always outperform
+                    the general "buying and holding" strategy. However, because the bot uses market orders,
+                    everytime a market order is executed, the asset is bought or sold at a less optimal price
+                    to prioritize the filling of the order. For example, a market buy order at $10 will actually
+                    buy the asset at a value of $10.1 so that the order is ensured to be filled. For a maret sell
+                    order, it may sell at $9.9 instead. Usually, around 1% of the value is lost in a market order. 
+                </p>
+                <p>
+                    So if the asset's price moves up and down and causes the bot to constantly execute market
+                    orders, the total value will slowly get chipped away. In the trading bot simulator, the 
+                    amount of value lost to a market order can be controlled with the "market order loss percentage"
+                    input. 
+                </p>
+                <p>
+                    Whether the bot outperforms the general strategy depends on the market and the price movement. 
+                    If the price has large movemnts, the bot will usually outpeform the general strategy. However,
+                    if the price has many small movements, the bot will underperform the general strategy. 
+                </p>
+                <br>
             </div>
-            <br>
-            <label class="moloss-label" for="moloss-input">Enter market order loss percentage:</label><br>
-            <label class="moloss-label" for="moloss-input">(This value is typically less than 2-5%):</label><br>
-            <input class="moloss-input" type="number" min="0" max="100" placeholder="eg. 0.001"><br>
-            <label class="moloss-input-check" for="moloss-input" style="color: red;"></label>
-            <br><br>
-            <button class="run-button" type="button">Run</button>
+            
+            <div class="user-input">
+                <label class="crypto-label" for="crypto-input">Enter cryptocurrency name:</label><br>
+                <input class="crypto-input" type="text" placeholder="eg. BTC" maxlength="10"><br>
+                <label class="crypto-input-check" for="crypto-input" style="color: red;"></label>
+                <br>
+                <label class="currency-label" for="currency-input">Enter currency name:</label><br>
+                <input class="currency-input" type="text" placeholder="eg. USD" maxlength="10"><br>
+                <label class="currency-input-check" for="currency-input" style="color: red;"></label>
+                <br>
+                <label class="gap-label" for="gap-input">Enter gap:</label><br>
+                <input class="gap-input" type="number" placeholder="eg. 1000"><br>
+                <label class="gap-input-check" for="gap-input" style="color: red;"></label>
+                <br>
+                <label class="money-label" for="money-input">Enter amount of money to :</label><br>
+                <input class="money-input" type="number" placeholder="eg. 100000"><br>
+                <label class="money-input-check" for="money-input" style="color: red;"></label>
+                <br>
+                <label class="from-date-label" for="from-date-input">Enter starting date:</label><br>
+                <input class="from-date-input" type="date"><br>
+                <label class="from-date-input-check" for="from-date-input" style="color: red;"></label>
+                <br>
+                <label class="to-date-label" for="to-date-input">Enter ending date:</label><br>
+                <input class="to-date-input" type="date"><br>
+                <label class="to-date-input-check" for="to-date-input" style="color: red;"></label>
+                <br>
+                <div class="time-range-choices">
+                    <label for="time-range-choices">Choose a time range:</label><br>
+                    <div class="time-range-day-wrapper">
+                        <input name="time-range-choices" class="time-range-day-button" type="radio">
+                        <label class="time-range-day-label" for="time-range-day">Day (limit: 1999 days)</label>
+                    </div>
+                    <div class="time-range-hour-wrapper">
+                        <input name="time-range-choices" class="time-range-hour-button" type="radio">
+                        <label class="time-range-hour-label" for="time-range-hour">Hour (limit: 83 days)</label>
+                    </div>
+                    <div class="time-range-minute-wrapper">
+                        <input name="time-range-choices" class="time-range-minute-button" type="radio">
+                        <label class="time-range-minute-label" for="time-range-minute">Minute (limit: 1 day)</label>
+                    </div>
+                    <label class="time-range-input-check" for="time-range-input" style="color: red;"></label>
+                </div>
+                <br>
+                <label class="moloss-label" for="moloss-input">Enter market order loss percentage:</label><br>
+                <label class="moloss-label" for="moloss-input">(This value is typically less than 2-5%):</label><br>
+                <input class="moloss-input" type="number" min="0" max="100" placeholder="eg. 0.001"><br>
+                <label class="moloss-input-check" for="moloss-input" style="color: red;"></label>
+                <br><br>
+                <button class="run-button" type="button">Run</button>
+            </div>
         </div>
+                    
+    </div>
+
+    <div class="main-content">
+        <h1 class="main-title">Trading Bot Demo</h1>
         <div class="asset-price-chart-and-zoom-container">
             <div class="asset-price-chart-container">
                 <canvas class="asset-price-chart"></canvas>
             </div>
             <div class="asset-price-chart-zoom-info">
-                <label for="asset-price-chart-zoom">Use the mouse wheel to zoom in and out.</label>
                 <button class="asset-price-chart-reset-zoom-button">Reset Zoom</button>
+                <label for="asset-price-chart-zoom">  (Use the mouse wheel to zoom in and out)</label>
             </div>
         </div>
         <div class="value-price-chart-and-zoom-container">
@@ -75,15 +123,11 @@
                 <canvas class="value-price-chart"></canvas>
             </div>
             <div class="value-price-chart-zoom-info">
-                <label for="value-price-chart-zoom">Use the mouse wheel to zoom in and out.</label>
                 <button class="value-price-chart-reset-zoom-button">Reset Zoom</button>
             </div>
         </div>
     </div>
         
-    </div>
-    
-    
     <script src="./trading-bot-demo-web/dist/trading-bot-demo-bundled.js"></script>
     
 </body>

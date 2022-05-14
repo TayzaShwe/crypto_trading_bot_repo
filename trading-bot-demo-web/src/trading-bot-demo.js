@@ -601,6 +601,9 @@ runToggle.addEventListener('click', async function () {
 document.querySelector(".asset-price-chart-reset-zoom-button").onclick = () => {
   assetPriceChart.resetZoom();
 }
+document.querySelector(".value-price-chart-reset-zoom-button").onclick = () => {
+  valuePriceChart.resetZoom();
+}
   
 
 // ------------- END OF MY CODE --------------- //

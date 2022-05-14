@@ -1,4 +1,13 @@
 
+:root {
+    --fs-regular: 15px;
+    --fs-h1: 2em;
+} 
+
+html * {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--fs-regular);
+}
 
 @media (min-width: 1280px) {
 
@@ -6,31 +15,65 @@
         height: 100%;
     }
 
-    body{
-        margin: 0;
+    body {
+        margin: 0 0 0 0;
         height: 100%;
     }
 
-    .container {
-        height: 80%;
+    .left-sidebar {
+        position: fixed;
+        top: 0; 
+        bottom: 0;
+        overflow-y: scroll;
+        align-self: start;
+        width: 25rem;
+    }
+
+    .description-and-input-container {
+        margin: 2rem 2rem 2rem 2rem;
+    }
+
+    .run-button {
+        border: none;
+    }
+
+    .main-content {
+        position: absolute;
+        margin: 0 5rem 2rem 30rem;  
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: auto;
         display: grid;
-        grid-template-columns: max-content 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-column-gap: 5em;
-        margin: 5em 3em 0em;
+        grid-template-rows: max-content, 1fr, 1fr;
     }
 
     .main-title {
+        grid-row: 1 / 2;
         text-align: center;
+        font-size: var(--fs-h1);
+        border-bottom: 2px solid rgb(214, 211, 211)
     }
 
-    .user-input {
-        grid-row: 1 / 3;
-        align-self: start;
+    .asset-price-chart-reset-zoom-button,
+    .value-price-chart-reset-zoom-button {
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgb(228, 228, 228);
+        transition: all 0.1s ease-in-out 0s;
+    }
+
+    .asset-price-chart-reset-zoom-button:hover,
+    .value-price-chart-reset-zoom-button:hover {
+        cursor: pointer;
     }
 
     .asset-price-chart-and-zoom-container {
-        grid-column: 2 / 3;
+        grid-row: 2 / 3;
         justify-self: center;
         width: 100%;
         height: 100%
@@ -43,8 +86,7 @@
     }
 
     .value-price-chart-and-zoom-container {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
         justify-self: center;
         width: 100%;
         height: 100%
