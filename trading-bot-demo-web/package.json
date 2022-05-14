@@ -4,7 +4,7 @@
   "description": "This is my trading bot demo project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js",
+    "webpack": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

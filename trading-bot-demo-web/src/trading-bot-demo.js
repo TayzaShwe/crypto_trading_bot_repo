@@ -128,8 +128,12 @@ var valuePriceChartConfig = {
   };
 
 // renders the chart
-var assetPriceChart = new Chart(document.querySelector(".asset-price-chart"), assetPriceChartConfig);
-var valuePriceChart = new Chart(document.querySelector(".value-price-chart"), valuePriceChartConfig);
+var assetPriceChart = new Chart(
+  document.querySelector(".asset-price-chart"), 
+  assetPriceChartConfig);
+var valuePriceChart = new Chart(
+  document.querySelector(".value-price-chart"), 
+  valuePriceChartConfig);
 
 // gets all input data from user and formats it. Also calculate difference in days
 function getData () {
@@ -369,8 +373,8 @@ function runTradingBot(priceList) {
         buyPrice = price + gap;
       }
     }
-    let curMin = Math.min(price, totalAssetValue, initAssetAmt*price);
-    let curMax = Math.max(price, totalAssetValue, initAssetAmt*price);
+    let curMin = Math.min(totalAssetValue, initAssetAmt*price);
+    let curMax = Math.max(totalAssetValue, initAssetAmt*price);
     if (curMin < minVal) {
       minVal = curMin;
     }
@@ -403,7 +407,7 @@ function resetCanvases () {
   document.querySelector(".asset-price-chart").remove();
   document.querySelector(".asset-price-chart-container").innerHTML = '<canvas class="asset-price-chart"></canvas>';
   document.querySelector(".value-price-chart").remove();
-  document.querySelector(".value-price-chart-container").innerHTML = '<canvas class="asset-price-chart"></canvas>';
+  document.querySelector(".value-price-chart-container").innerHTML = '<canvas class="value-price-chart"></canvas>';
 }
 
 runToggle.addEventListener('click', async function () {
@@ -420,10 +424,10 @@ runToggle.addEventListener('click', async function () {
   [totalValueWithBot, totalValueWithoutBot, sellPrices, buyPrices, minVal, maxVal] = runTradingBot(priceList);
 
   // charts data
-  let yAxisMin = minVal*0.66
-  let yAxisMax = maxVal*1.33
+  let yAxisMin = minVal*0.9
+  let yAxisMax = maxVal*1.1
   labels = timeList;
-  data = {
+  var assetPriceChartData = {
     labels: labels,
     datasets: [
       {
@@ -434,38 +438,24 @@ runToggle.addEventListener('click', async function () {
         yAxisID: 'y1',
       },
       {
-        label: 'Total Value Without Trading Bot',
-        data: totalValueWithoutBot,
-        borderColor: colors.orange,
-        backgroundColor: colors.orangeTp,
-        yAxisID: 'y2',
-      },
-      {
-        label: 'Total Value With Trading Bot',
-        data: totalValueWithBot,
-        borderColor: colors.purple,
-        backgroundColor: colors.purpleTp,
-        yAxisID: 'y3',
-      },
-      {
         label: 'Buy Price Orders',
         data: buyPrices,
         borderColor: colors.green,
         backgroundColor: colors.greenTp,
-        yAxisID: 'y4',
+        yAxisID: 'y2',
       },
       {
         label: 'Sell Price Orders',
         data: sellPrices,
         borderColor: colors.red,
         backgroundColor: colors.redTp,
-        yAxisID: 'y5',
+        yAxisID: 'y3',
       },
     ]
   };
-  config = {
+  assetPriceChartConfig = {
     type: 'line',
-    data: data,
+    data: assetPriceChartData,
     options: {
       maintainAspectRatio: false,
       scales: {
@@ -491,7 +481,86 @@ runToggle.addEventListener('click', async function () {
         },
         title: {
           display: false,
-          text: 'Trading Bot Simulation'
+          text: 'Asset Price and Orders'
+        }
+      },
+      scales: {
+        y1: {
+          type: 'linear',
+          display: true,
+          position: 'left',
+        },
+        y2: {
+          type: 'linear',
+          display: false,
+          position: 'right',
+  
+          // grid line settings
+          grid: {
+            drawOnChartArea: false, // only want the grid lines for one axis to show up
+          },
+        },
+        y3: {
+          type: 'linear',
+          display: false,
+          position: 'right',
+  
+          // grid line settings
+          grid: {
+            drawOnChartArea: false, // only want the grid lines for one axis to show up
+          },
+        }
+      }
+    }
+  };
+  var valuePriceChartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Total Value Without Trading Bot',
+        data: totalValueWithoutBot,
+        borderColor: colors.orange,
+        backgroundColor: colors.orangeTp,
+        yAxisID: 'y1',
+      },
+      {
+        label: 'Total Value With Trading Bot',
+        data: totalValueWithBot,
+        borderColor: colors.purple,
+        backgroundColor: colors.purpleTp,
+        yAxisID: 'y2',
+      },
+    ]
+  };
+  valuePriceChartConfig = {
+    type: 'line',
+    data: valuePriceChartData,
+    options: {
+      maintainAspectRatio: false,
+      scales: {
+        display: true,
+      },
+      responsive: true,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      stacked: false,
+      plugins: {
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'xy',
+          }
+        },
+        title: {
+          display: false,
+          text: 'Value Chart'
         }
       },
       scales: {
@@ -514,55 +583,18 @@ runToggle.addEventListener('click', async function () {
             drawOnChartArea: false, // only want the grid lines for one axis to show up
           },
         },
-        y3: {
-          type: 'linear',
-          display: false,
-          min: yAxisMin,
-          max: yAxisMax,
-          position: 'right',
-  
-          // grid line settings
-          grid: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-          },
-        },
-        y4: {
-          type: 'linear',
-          display: false,
-          min: yAxisMin,
-          max: yAxisMax,
-          position: 'right',
-  
-          // grid line settings
-          grid: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-          },
-        },
-        y5: {
-          type: 'linear',
-          display: false,
-          min: yAxisMin,
-          max: yAxisMax,
-          position: 'right',
-  
-          // grid line settings
-          grid: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-          }
-        },
       }
     },
   };
   // deletes old chart and draws new chart
   resetCanvases();
   assetPriceChart = new Chart(
-    document.querySelector(`asset-price-chart`),
-    config
+    document.querySelector(".asset-price-chart"),
+    assetPriceChartConfig
   );
   valuePriceChart = new Chart(
-    document.querySelector(`value-price-chart`),
-    config
-  );
+    document.querySelector(".value-price-chart"), 
+    valuePriceChartConfig);
 });
 
 // to reset zoom. Basically recreates the chart
