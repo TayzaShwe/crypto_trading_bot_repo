@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script> -->
     <!-- <script src="../node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script> -->
     <link rel="stylesheet" href="./trading-bot-demo-web/dist/trading-bot-demo-stylesheet.css">
     <title>Trading Bot Demo</title>
@@ -61,15 +61,25 @@
             <br><br>
             <button class="run-button" type="button">Run</button>
         </div>
-        <div class="chart-and-zoom-container">
-            <div class="chart-container">
-                <canvas class="chart"></canvas>
+        <div class="asset-price-chart-and-zoom-container">
+            <div class="asset-price-chart-container">
+                <canvas class="asset-price-chart"></canvas>
             </div>
-            <div class="zoom-info">
-                <label for="zoom">Use the mouse wheel to zoom in and out.</label>
-                <button class="reset-zoom-button">Reset Zoom</button>
+            <div class="asset-price-chart-zoom-info">
+                <label for="asset-price-chart-zoom">Use the mouse wheel to zoom in and out.</label>
+                <button class="asset-price-chart-reset-zoom-button">Reset Zoom</button>
             </div>
         </div>
+        <div class="value-price-chart-and-zoom-container">
+            <div class="value-price-chart-container">
+                <canvas class="value-price-chart"></canvas>
+            </div>
+            <div class="value-price-chart-zoom-info">
+                <label for="value-price-chart-zoom">Use the mouse wheel to zoom in and out.</label>
+                <button class="value-price-chart-reset-zoom-button">Reset Zoom</button>
+            </div>
+        </div>
+    </div>
         
     </div>
     

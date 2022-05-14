@@ -32,7 +32,7 @@ var data = {
 labels: labels,
 datasets: []
 };
-var config = {
+var assetPriceChartConfig = {
 type: 'line',
 data: data,
 options: {
@@ -57,7 +57,7 @@ options: {
     },
     title: {
       display: true,
-      text: 'Trading Bot Simulation'
+      text: 'Asset Price and Orders'
     }
   },
   scales: {
@@ -79,12 +79,57 @@ options: {
   }
 },
 };
+var valuePriceChartConfig = {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true
+          },
+          mode: 'xy',
+        }
+      },
+      title: {
+        display: true,
+        text: 'Value Chart'
+      }
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+  
+        // grid line settings
+        grid: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
+        },
+      },
+    }
+  },
+  };
 
 // renders the chart
-var assetPriceChart = new Chart(
-document.querySelector(".chart"),
-config
-);
+var assetPriceChart = new Chart(document.querySelector(".asset-price-chart"), assetPriceChartConfig);
+var valuePriceChart = new Chart(document.querySelector(".value-price-chart"), valuePriceChartConfig);
 
 // gets all input data from user and formats it. Also calculate difference in days
 function getData () {
@@ -354,9 +399,11 @@ function checkValidCoinPair (result) {
 }
 
 // deletes old canvas and replaces it with a new, blank one
-function resetCanvas () {
-  document.querySelector(".chart").remove();
-  document.querySelector(".chart-container").innerHTML = '<canvas class="chart"></canvas>';
+function resetCanvases () {
+  document.querySelector(".asset-price-chart").remove();
+  document.querySelector(".asset-price-chart-container").innerHTML = '<canvas class="asset-price-chart"></canvas>';
+  document.querySelector(".value-price-chart").remove();
+  document.querySelector(".value-price-chart-container").innerHTML = '<canvas class="asset-price-chart"></canvas>';
 }
 
 runToggle.addEventListener('click', async function () {
@@ -507,15 +554,19 @@ runToggle.addEventListener('click', async function () {
     },
   };
   // deletes old chart and draws new chart
-  resetCanvas();
+  resetCanvases();
   assetPriceChart = new Chart(
-    document.querySelector(".chart"),
+    document.querySelector(`asset-price-chart`),
+    config
+  );
+  valuePriceChart = new Chart(
+    document.querySelector(`value-price-chart`),
     config
   );
 });
 
 // to reset zoom. Basically recreates the chart
-document.querySelector(".reset-zoom-button").onclick = () => {
+document.querySelector(".asset-price-chart-reset-zoom-button").onclick = () => {
   assetPriceChart.resetZoom();
 }
   
