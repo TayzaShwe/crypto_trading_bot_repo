@@ -55,8 +55,9 @@ A simple rule to remember is that the trading bot has outperformed the normal st
 
 ## TECHNOLOGIES INVOLVED ##
 
-* Python (for the both versions)
-* Matplotlib (for the second version)
-* Coinbase Pro API (for the first version) ([link](https://github.com/danpaquin/coinbasepro-python)) 
-* Cryptocompare API (for the second version) ([link](https://github.com/lagerfeuer/cryptocompare))
+* Python (for the versions 1 and 2)
+* Matplotlib (for the version 2)
+* Coinbase Pro API (for the version 1) ([link](https://github.com/danpaquin/coinbasepro-python)) 
+* Cryptocompare API (for the versions 2 and 3) ([link](https://github.com/lagerfeuer/cryptocompare))
+* Chart.js (for version 3) ([link](https://www.chartjs.org/))
 
