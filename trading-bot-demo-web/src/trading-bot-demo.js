@@ -423,9 +423,22 @@ runToggle.addEventListener('click', async function () {
   let buyPrices, sellPrices, totalValueWithBot, totalValueWithoutBot, minVal, maxVal;
   [totalValueWithBot, totalValueWithoutBot, sellPrices, buyPrices, minVal, maxVal] = runTradingBot(priceList);
 
+  // updates results
+  let lastValueWithBot = Math.round(totalValueWithBot[totalValueWithBot.length-1] * 100) / 100;
+  let lastValueWithoutBot = Math.round(totalValueWithoutBot[totalValueWithoutBot.length-1] * 100) / 100;
+  let difference = Math.round(lastValueWithBot - lastValueWithoutBot * 100) / 100;
+  document.querySelector(".total-value-with-trading-bot-result").innerHTML = 
+    `Total value with Trading Bot: ${lastValueWithBot}`;
+  document.querySelector(".total-value-without-trading-bot-result").innerHTML = 
+    `Total value without Trading Bot: ${lastValueWithoutBot}`;
+  document.querySelector(".difference-in-value-result").innerHTML = 
+    `Difference: ${difference}`;
+
   // charts data
-  let yAxisMin = minVal*0.9
-  let yAxisMax = maxVal*1.1
+  let yAxisMinAssetPriceChart = Math.min(...priceList) * 0.9
+  let yAxisMaxAssetPriceChart = Math.max(...priceList) * 1.1
+  let yAxisMinValuePriceChart = minVal*0.9
+  let yAxisMaxValuePriceChart = maxVal*1.1
   labels = timeList;
   var assetPriceChartData = {
     labels: labels,
@@ -488,11 +501,15 @@ runToggle.addEventListener('click', async function () {
         y1: {
           type: 'linear',
           display: true,
+          min: yAxisMinAssetPriceChart,
+          max: yAxisMaxAssetPriceChart,
           position: 'left',
         },
         y2: {
           type: 'linear',
           display: false,
+          min: yAxisMinAssetPriceChart,
+          max: yAxisMaxAssetPriceChart,
           position: 'right',
   
           // grid line settings
@@ -503,6 +520,8 @@ runToggle.addEventListener('click', async function () {
         y3: {
           type: 'linear',
           display: false,
+          min: yAxisMinAssetPriceChart,
+          max: yAxisMaxAssetPriceChart,
           position: 'right',
   
           // grid line settings
@@ -567,15 +586,15 @@ runToggle.addEventListener('click', async function () {
         y1: {
           type: 'linear',
           display: true,
-          min: yAxisMin,
-          max: yAxisMax,
+          min: yAxisMinValuePriceChart,
+          max: yAxisMaxValuePriceChart,
           position: 'left',
         },
         y2: {
           type: 'linear',
           display: false,
-          min: yAxisMin,
-          max: yAxisMax,
+          min: yAxisMinValuePriceChart,
+          max: yAxisMaxValuePriceChart,
           position: 'right',
   
           // grid line settings
