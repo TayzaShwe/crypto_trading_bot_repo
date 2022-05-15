@@ -426,7 +426,7 @@ runToggle.addEventListener('click', async function () {
   // updates results
   let lastValueWithBot = Math.round(totalValueWithBot[totalValueWithBot.length-1] * 100) / 100;
   let lastValueWithoutBot = Math.round(totalValueWithoutBot[totalValueWithoutBot.length-1] * 100) / 100;
-  let difference = Math.round(lastValueWithBot - lastValueWithoutBot * 100) / 100;
+  let difference = Math.round((lastValueWithBot - lastValueWithoutBot) * 100) / 100;
   document.querySelector(".total-value-with-trading-bot-result").innerHTML = 
     `Total value with Trading Bot: ${lastValueWithBot}`;
   document.querySelector(".total-value-without-trading-bot-result").innerHTML = 
