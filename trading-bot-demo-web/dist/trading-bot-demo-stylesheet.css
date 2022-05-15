@@ -1,13 +1,97 @@
 
 :root {
-    --fs-1280: 15px;
     --fs-h1: 2em;
+    --fs-1280: 15px;
     --fs-800: 12px;
+    --fs-300-regular: 10px;
+    --fs-300-h1: 15px;
+    --fs-300-h2: 12px;
 } 
 
 html * {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+}
+
+@media (min-width: 300px) {
+    html * {
+        font-size: var(--fs-300-regular);
+    }
+
+    /* Left Sidebar */ 
+
+    .description-and-input-container {
+        text-align: center;
+        margin: 1rem 2rem;
+    }
+
+    .main-title {
+        text-align: center;
+        font-size: var(--fs-300-h1);
+    }
+
+    h2 {
+        font-size: var(--fs-300-h2);
+    }
+
+    .trading-bot-demo-description,
+    .user-input,
+    .results-container {
+        border-bottom: 2px solid rgb(214, 211, 211);
+    }
+
+    .user-input,
+    .results-container {
+        padding-bottom: 1rem;
+    }
+
+    .bot-input {
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(228, 228, 228);
+    }
+
+    .bot-input:focus {
+        outline: none;
+    }
+
+    .run-button {
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: rgb(228, 228, 228);
+        transition: all 0.1s ease-in-out 0s;
+    }
+
+    .run-button {
+        cursor: pointer;
+
+    }
+
+    /* Main Content/Right Content */ 
+
+    .asset-price-chart-reset-zoom-button,
+    .value-price-chart-reset-zoom-button {
+        box-sizing: border-box;
+        text-decoration: none;
+        border: none;
+        padding: 2px;
+        border-radius: 5px;
+        background-color: rgb(228, 228, 228);
+        transition: all 0.1s ease-in-out 0s;
+    }
+
+    .asset-price-chart-reset-zoom-button:hover,
+    .value-price-chart-reset-zoom-button:hover {
+        cursor: pointer;
+    }
+
+    .asset-price-chart-container,
+    .value-price-chart-container {
+        height: 250px;
+    }
 }
 
 @media (min-width: 800px) {
@@ -34,10 +118,12 @@ html * {
         overflow-y: scroll;
         align-self: start;
         width: min(25rem, 25%);
+        border-right: 2px solid rgb(214, 211, 211);
     }
 
     .description-and-input-container {
         margin: 1.3rem 1.3rem 1.3rem 1.3rem;
+        text-align: start;
     }
 
     .trading-bot-demo-description,
@@ -76,25 +162,6 @@ html * {
 
     /* Main Content/Right Content */ 
 
-    /*.main-content {
-        position: absolute;
-        margin: 0 5rem 2rem 30rem;  
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        height: auto;
-        display: grid;
-        grid-template-rows: max-content, 1fr, 1fr;
-    }*/
-
-    /*.main-content {
-        margin: 0 2rem 0 27rem;
-        padding-bottom: 2rem;
-        display: grid;
-        grid-template-rows: max-content, 1fr, 1fr;
-        height: 100%;
-    }*/
 
     .main-content {
         position: fixed;
@@ -161,6 +228,8 @@ html * {
     html * {
         font-size: var(--fs-1280);
     }
+
+    /* Left Sidebar */ 
 
     .description-and-input-container {
         margin: 2rem 2rem 2rem 2rem;

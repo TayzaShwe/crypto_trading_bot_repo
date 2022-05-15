@@ -410,6 +410,45 @@ function resetCanvases () {
   document.querySelector(".value-price-chart-container").innerHTML = '<canvas class="value-price-chart"></canvas>';
 }
 
+// checks if screen width is <800px and if so, moves main title
+var mainTitle = document.createElement('h1');
+mainTitle.setAttribute('class', "main-title");
+mainTitle.innerText = "Trading Bot Demo";
+var zoomHint = document.createElement('label');
+zoomHint.setAttribute('class', "zoom-hint");
+
+if (screen.width < 800) {
+  document.querySelector('.main-title').remove();
+  document.querySelector('.left-sidebar').prepend(mainTitle);
+  document.querySelector('.zoom-hint').remove();
+  zoomHint.innerText = "(Pinch to zoom in and out)";
+  document.querySelector('.asset-price-chart-zoom-info').append(zoomHint);
+};
+
+// moves main title when screen width is <800px
+var isLt800 = false;
+window.onresize = window.onload = function() {
+  if ((screen.width < 800) && (isLt800==false)) {
+    isLt800 = true;
+
+    document.querySelector('.main-title').remove();
+    document.querySelector('.left-sidebar').prepend(mainTitle);
+    document.querySelector('.zoom-hint').remove();
+    zoomHint.innerText = "(Pinch to zoom in and out)";
+    document.querySelector('.asset-price-chart-zoom-info').append(zoomHint);
+  }
+  if ((screen.width >= 800) && (isLt800==true)) {
+    isLt800 = false;
+
+    document.querySelector(".main-title").remove();
+    document.querySelector('.main-content').prepend(mainTitle);
+    document.querySelector('.zoom-hint').remove();
+    zoomHint.innerText = "(Use the mouse wheel to zoom in and out)";
+    document.querySelector('.asset-price-chart-zoom-info').append(zoomHint);
+  }
+
+}
+
 runToggle.addEventListener('click', async function () {
   getData(); // retrieves input from user
   if (!checkInputValid()) {return}
