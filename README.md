@@ -23,7 +23,7 @@ When I started off trading cryptocurrencies as a beginner, I noticed that I miss
 
 My trading bot's algorithm is simple. It first sends a __market buy order__ and sets a __sell price__ below the price at which the cryptocurrency was bought. The __sell price__ is determined by the __gap__ which is a predetermined input by the user. If the cryptocurrency's price rises and the difference between the price and the __sell price__ is more than the __gap__, the __sell price__ will be updated to a higher price. If the cryptocurrency's price drops, the __sell price__ doesn't move. If the __sell price__ is hit, a __market sell order__ is sent and a __buy price__ is set to the former __sell price__. If cryptocurrency's price drops, the __buy price__ will maintain a difference of the __gap__ similar to how the __sell price__ changes. If the price moves up again, the __buy price__ doesn't move. If the __buy price__ is hit, a __market buy order__ is sent and the sell price is set to the __buy price__. The bot, in essence, is supposed to try to __"buy low, sell high."__
 
-Link to demonstration [video](https://youtu.be/m4KDKBe5BOg)
+[Demonstration video.](https://youtu.be/m4KDKBe5BOg)
 
 ## RESULTS ##
 
@@ -57,7 +57,8 @@ A simple rule to remember is that the trading bot has outperformed the normal st
 
 * Python (for the versions 1 and 2)
 * Matplotlib (for the version 2)
-* Coinbase Pro API (for the version 1) ([link](https://github.com/danpaquin/coinbasepro-python)) 
-* Cryptocompare API (for the versions 2 and 3) ([link](https://github.com/lagerfeuer/cryptocompare))
-* Chart.js (for version 3) ([link](https://www.chartjs.org/))
+* [Coinbase Pro API](https://github.com/danpaquin/coinbasepro-python) (for the version 1) 
+* [Cryptocompare API](https://github.com/lagerfeuer/cryptocompare) (for the versions 2 and 3) 
+* [Chart.js](https://www.chartjs.org/) (for version 3)
+
 
